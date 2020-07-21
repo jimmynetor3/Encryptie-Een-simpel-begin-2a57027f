@@ -36,7 +36,6 @@ $input = readline("wat wil je encrypten ");
 $last_offset = -1;
 $shiftsize = (int)readline("welke shift wil je ");
 $shiftsize_array = $shiftsize - 1;
-//kijkt hoe groot de array is
 foreach ($alphabet as $letter) {
     $last_offset++;
 }
@@ -48,12 +47,8 @@ if (preg_match_all($pattern_word, $input, $matches)) {
         }
     }
 }
-//var_dump($array_words);
 foreach ($array_words as $word) {
-//    echo($word);
-//    var_dump($word);
     if (preg_match_all($pattern_letter, $word, $match_letter, PREG_SET_ORDER, 0)) {
-//      var_dump($match_letter);
         foreach ($match_letter as $match) {
             foreach ($match as $match) {
                 $array_keys = array_keys($alphabet, $match);
