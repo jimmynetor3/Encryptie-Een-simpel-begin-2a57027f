@@ -1,27 +1,73 @@
 <?php
 
-$pattern = "/[a-zA-Z]/m";
-$alphabet = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
-$input = $argv[1];
+$pattern_word = "/[a-zA-Z]{1,}/m";
+$pattern_letter = "/[a-zA-Z]/m";
+$array_words = array();
+$alphabet = array(
+    'a',
+    'b',
+    'c',
+    'd',
+    'e',
+    'f',
+    'g',
+    'h',
+    'i',
+    'j',
+    'k',
+    'l',
+    'm',
+    'n',
+    'o',
+    'p',
+    'q',
+    'r',
+    's',
+    't',
+    'u',
+    'v',
+    'w',
+    'x',
+    'y',
+    'z'
+);
+$test = 0;
+$input = readline("wat wil je encrypten ");
 $last_offset = -1;
+$shiftsize = (int)readline("welke shift wil je ");
+$shiftsize_array = $shiftsize - 1;
 //kijkt hoe groot de array is
 foreach ($alphabet as $letter) {
     $last_offset++;
 }
-//pakt alle letter van het meegegeven stuk tekst
-if (preg_match_all($pattern, $input, $match)) {
-//    kijkt voor elke letter waar die in het alphabet array zit
-    foreach ($match as $match) {
+
+if (preg_match_all($pattern_word, $input, $matches)) {
+    foreach ($matches as $match) {
         foreach ($match as $match) {
-            $array_key = (array_keys($alphabet, $match));
-            foreach ($array_key as $array_key) {
-//                kijkt of de letter aan het eind van de array zit, zo ja dan gaat die terug naar de begin positie
-                if ($array_key != $last_offset) {
-                    echo $alphabet[$array_key + 1];
-                } else {
-                    echo $alphabet[0];
+            array_push($array_words, $match);
+        }
+    }
+}
+//var_dump($array_words);
+foreach ($array_words as $word) {
+//    echo($word);
+//    var_dump($word);
+    if (preg_match_all($pattern_letter, $word, $match_letter, PREG_SET_ORDER, 0)) {
+//      var_dump($match_letter);
+        foreach ($match_letter as $match) {
+            foreach ($match as $match) {
+                $array_keys = array_keys($alphabet, $match);
+                foreach ($array_keys as $array_keys) {
+                    $offset = $array_keys + $shiftsize;
+                    if ($offset <= $last_offset) {
+                        echo $alphabet[$offset] ;
+                    } elseif($offset > $last_offset){
+                        echo $alphabet[$offset-25-1] ;
+                    }
                 }
             }
         }
     }
+    echo " ";
 }
+
