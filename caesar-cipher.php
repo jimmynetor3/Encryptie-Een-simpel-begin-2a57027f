@@ -55,9 +55,9 @@ foreach ($array_words as $word) {
                 foreach ($array_keys as $array_keys) {
                     $offset = $array_keys + $shiftsize;
                     if ($offset <= $last_offset) {
-                        echo $alphabet[$offset] ;
-                    } elseif($offset > $last_offset){
-                        echo $alphabet[$offset-25-1] ;
+                        echo $alphabet[$offset];
+                    } elseif ($offset > $last_offset) {
+                        echo $alphabet[$offset - 25 - 1];
                     }
                 }
             }
